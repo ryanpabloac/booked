@@ -6,6 +6,7 @@ import com.spacery.booked.core.ai.GeminiAIConnection;
 import com.spacery.booked.core.entities.Book;
 import com.spacery.booked.core.utils.BookJson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -14,7 +15,10 @@ import java.util.ArrayList;
 @CrossOrigin(origins = "*")
 @RestController
 public class Controller {
-    @Autowired
+
+    @Value("${API_KEY}")
+    private String apiKey;
+
     private BookRepository bookRepository;
 
     @GetMapping("/api/books")
@@ -28,11 +32,11 @@ public class Controller {
 
     @PostMapping("/api/books/{author}")
     public void addBooks(@PathVariable("author") String author) {
-        GeminiAIConnection gemini = new GeminiAIConnection("");
+        GeminiAIConnection gemini = new GeminiAIConnection(apiKey);
         String json = gemini.newAuthor(author);
 
         BookJson bookJson = new BookJson(json);
-        for(Book book : bookJson.getLivros()) bookRepository.save(book);
+        bookRepository.saveAll(bookJson.getLivros());
 
     }
 }
