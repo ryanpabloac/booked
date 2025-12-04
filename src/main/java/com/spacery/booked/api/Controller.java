@@ -18,8 +18,11 @@ public class Controller {
 
     @Value("${API_KEY}")
     private String apiKey;
+    private final BookRepository bookRepository;
 
-    private BookRepository bookRepository;
+    public Controller(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @GetMapping("/api/books")
     @ResponseBody
