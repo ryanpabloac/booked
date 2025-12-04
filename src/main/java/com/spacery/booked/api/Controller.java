@@ -33,8 +33,8 @@ public class Controller {
         return response;
     }
 
-    @PostMapping("/api/books/{author}")
-    public void addBooks(@PathVariable("author") String author) {
+    @PostMapping("/api/books")
+    public void addBooks(@RequestBody String author) {
         GeminiAIConnection gemini = new GeminiAIConnection(apiKey);
         String json = gemini.newAuthor(author);
 
