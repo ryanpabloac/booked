@@ -2,7 +2,7 @@
 
 ## [GET] Consultar Livros
     /api/books/
-Retorna todos os livros salvos no banco de dados
+Retorna todos os livros salvos no banco de dados <br>
 **Resposta:**
 ```json
 {
@@ -19,3 +19,7 @@ Retorna todos os livros salvos no banco de dados
     ]
 }
 ```
+
+## [POST] Registrar Livros
+    /api/books/{author}
+Cadastra os livros no banco de dados de um determinado autor <br>

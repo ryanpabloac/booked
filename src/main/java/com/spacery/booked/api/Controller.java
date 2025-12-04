@@ -42,4 +42,12 @@ public class Controller {
         bookRepository.saveAll(bookJson.getLivros());
 
     }
+
+    @GetMapping("/api/books/{author}")
+    public BooksResponse getBooksByAuthor(@PathVariable("author") String author) {
+        BooksResponse response = new BooksResponse();
+        response.setLivros(bookRepository.findBooksByAutor(author));
+
+        return response;
+    }
 }
