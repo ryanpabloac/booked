@@ -1,4 +1,4 @@
-package com.spacery.booked.api.response;
+package com.spacery.booked.api.dtos;
 
 import com.spacery.booked.core.entities.Book;
 import lombok.Getter;
@@ -10,4 +10,5 @@ import java.util.List;
 @Setter
 public class BooksResponse {
     private List<Book> livros;
+    private String autor;
 }
